@@ -42,5 +42,20 @@ namespace WritingPlatform.Service
             uow.WorkRepository.Update(work);
             uow.Commit();
         }
+
+        public Work GetByGenre(string genre)
+        {
+            return uow.WorkRepository.GetByGenre(genre);
+        }
+
+        public Work GetByName(string name)
+        {
+            return uow.WorkRepository.GetByName(name);
+        }
+
+        public Work GetByAuthor(User author)
+        {
+            return uow.WorkRepository.GetByUser(author);
+        }
     }
 }

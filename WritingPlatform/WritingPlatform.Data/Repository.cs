@@ -9,9 +9,9 @@ namespace WritingPlatform.Data
     internal abstract class Repository<TEntity> : IRepository<TEntity>
          where TEntity : BaseEntity
     {
-        private readonly DbSet<TEntity> dbSet;
+        protected DbSet<TEntity> dbSet;
 
-        private readonly DbContext context;
+        protected DbContext context;
 
         protected Repository(DbContext context)
         {

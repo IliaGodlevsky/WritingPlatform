@@ -16,6 +16,8 @@ namespace WritingPlatform.Data.Entities
 
         public string Email { get; set; }
 
+        public bool IsDeleted { get; set; }
+
         public IEnumerable<Work> Works { get; set; }
 
     }

@@ -6,5 +6,6 @@
 	[PublicationTime] DATETIME NOT NULL,
 	[Rating] SMALLINT NOT NULL,
 	[UserId] INT NOT NULL,
+	[TextOfWork] NVARCHAR(MAX) NOT NULL,
 	CONSTRAINT PK_Work PRIMARY KEY ([Id])
 )

@@ -15,6 +15,8 @@ namespace WritingPlatform.Data.Entities
 
         public int UserId { get; set; }
 
+        public string TextOfWork { get; set; }
+
         public virtual IEquatable<Comment> Comments { get; set; }
     }
 }
