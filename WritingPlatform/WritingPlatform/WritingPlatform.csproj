@@ -46,6 +46,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.0\lib\net45\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.0\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.MVC5.3.3.0\lib\net45\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -118,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\DependencyInjectionConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -179,6 +192,28 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WritingPlatform.Base.Abstractions\WritingPlatform.Base.Abstractions.csproj">
+      <Project>{E12B60EC-119C-4293-8C08-F6B3211AF3B5}</Project>
+      <Name>WritingPlatform.Base.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WritingPlatform.Data.Abstractions\WritingPlatform.Data.Abstractions.csproj">
+      <Project>{7A9E34CE-4877-483B-936D-BEBFD5F8186D}</Project>
+      <Name>WritingPlatform.Data.Abstractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WritingPlatform.Data\WritingPlatform.Data.csproj">
+      <Project>{325810AA-FE8A-406A-A740-5A8417137A2F}</Project>
+      <Name>WritingPlatform.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WritingPlatform.Service.Absractions\WritingPlatform.Service.Absractions.csproj">
+      <Project>{31D46E31-8122-4BF8-A07E-C0D18409F1EF}</Project>
+      <Name>WritingPlatform.Service.Absractions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WritingPlatform.Service\WritingPlatform.Service.csproj">
+      <Project>{6CF4C435-B595-41D4-AD69-1A60A03AEA4D}</Project>
+      <Name>WritingPlatform.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

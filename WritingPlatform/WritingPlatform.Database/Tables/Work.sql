@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[Work]
+(
+	[Id] INT NOT NULL IDENTITY(1,1),
+	[Name] NVARCHAR(50) NOT NULL,
+	[Genre] NVARCHAR(50) NOT NULL,
+	[PublicationTime] DATETIME NOT NULL,
+	[Rating] SMALLINT NOT NULL,
+	[UserId] INT NOT NULL,
+	CONSTRAINT PK_Work PRIMARY KEY ([Id])
+)
