@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Web;
+using WebActivatorEx;
 using WritingPlatform.App_Start;
 
 // Управление общими сведениями о сборке осуществляется следующим образом

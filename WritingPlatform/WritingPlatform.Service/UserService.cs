@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using WritingPlatform.Data.Abstractions;
 using WritingPlatform.Data.Entities;
+using WritingPlatform.Models.Users;
 using WritingPlatform.Service.Absractions;
+using WritingPlatform.Service.Mapping;
 
 namespace WritingPlatform.Service
 {
@@ -14,20 +16,28 @@ namespace WritingPlatform.Service
             this.uow = uow;
         }
 
-        public void AddUser(User user)
+        public void AddUser(NewUserModel user)
         {
-            uow.UserRepository.Create(user);
+            var entity = MapperService.Instance.Map<NewUserModel, User>(user);
+            uow.UserRepository.Create(entity);
+
             uow.Commit();
         }
 
-        public User GetById(int id)
+        public UserModel GetById(int id)
         {
-            return uow.UserRepository.GetById(id);
+            var entity = uow.UserRepository.GetById(id);
+            var model = MapperService.Instance.Map<User, UserModel>(entity);
+
+            return model;
         }
 
-        public IEnumerable<User> GetUsers()
+        public IEnumerable<UserModel> GetUsers()
         {
-            return uow.UserRepository.GetAll();
+            var entities = uow.UserRepository.GetAll();
+            var models = MapperService.Instance.Map<IEnumerable<UserModel>>(entities);
+
+            return models;
         }
 
         public void RemoveUserById(int id)
@@ -37,9 +47,11 @@ namespace WritingPlatform.Service
             uow.Commit();
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(UpdateUserModel user)
         {
-            uow.UserRepository.Update(user);
+            var entity = MapperService.Instance.Map<UpdateUserModel, User>(user);
+            uow.UserRepository.Update(entity);
+
             uow.Commit();
         }
     }

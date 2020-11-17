@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using WritingPlatform.Data.Abstractions;
 using WritingPlatform.Data.Entities;
+using WritingPlatform.Models.Works;
 using WritingPlatform.Service.Absractions;
+using WritingPlatform.Service.Mapping;
 
 namespace WritingPlatform.Service
 {
@@ -14,48 +18,53 @@ namespace WritingPlatform.Service
             this.uow = uow;
         }
 
-        public void AddWork(Work work)
+        public void AddWork(NewWorkModel work)
         {
-            uow.WorkRepository.Create(work);
+            var entity = MapperService.Instance.Map<NewWorkModel, Work>(work);
+            uow.WorkRepository.Create(entity);
+
             uow.Commit();
         }
 
-        public Work GetById(int id)
+        public WorkModel GetBy(Func<WorkModel, bool> selector)
         {
-            return uow.WorkRepository.GetById(id);
+            var entities = uow.WorkRepository.GetAll();
+            var models = MapperService.Instance.Map<IEnumerable<WorkModel>>(entities);
+
+            var filteredModel = models.First(selector);
+            return filteredModel;
         }
 
-        public IEnumerable<Work> GetWorks()
+        public WorkModel GetById(int id)
         {
-            return uow.WorkRepository.GetAll();
+            var entity = uow.WorkRepository.GetById(id);
+            var model = MapperService.Instance.Map<Work, WorkModel>(entity);
+
+            return model;
+        }
+
+        public IEnumerable<WorkModel> GetWorks()
+        {
+            var entities = uow.WorkRepository.GetAll();
+            var models = MapperService.Instance.Map<IEnumerable<WorkModel>>(entities);
+
+            return models;
         }
 
         public void RemoveUserById(int id)
         {
             var work = uow.WorkRepository.GetById(id);
             uow.WorkRepository.Remove(work);
+
             uow.Commit();
         }
 
-        public void UpdateWork(Work work)
+        public void UpdateWork(UpdateWorkModel work)
         {
-            uow.WorkRepository.Update(work);
+            var entity = MapperService.Instance.Map<UpdateWorkModel, Work>(work);
+            uow.WorkRepository.Update(entity);
+
             uow.Commit();
-        }
-
-        public Work GetByGenre(string genre)
-        {
-            return uow.WorkRepository.GetByGenre(genre);
-        }
-
-        public Work GetByName(string name)
-        {
-            return uow.WorkRepository.GetByName(name);
-        }
-
-        public Work GetByAuthor(User author)
-        {
-            return uow.WorkRepository.GetByUser(author);
         }
     }
 }

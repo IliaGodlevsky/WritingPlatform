@@ -1,18 +1,23 @@
-﻿using System.Collections.Generic;
-using WritingPlatform.Data.Entities;
+﻿using System;
+using System.Collections.Generic;
+using WritingPlatform.Models.Works;
 
 namespace WritingPlatform.Service.Absractions
 {
     public interface IWorkService
     {
-        void AddWork(Work work);
+        void AddWork(NewWorkModel work);
 
         void RemoveUserById(int id);
 
-        void UpdateWork(Work work);
+        void UpdateWork(UpdateWorkModel work);
 
-        Work GetById(int id);
+        WorkModel GetById(int id);
 
-        IEnumerable<Work> GetWorks();
+        WorkModel GetBy(Func<WorkModel, bool> selector);
+
+        IEnumerable<WorkModel> GetWorks();
+
+
     }
 }

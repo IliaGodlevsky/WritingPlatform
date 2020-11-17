@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
-using WritingPlatform.Data.Entities;
+using WritingPlatform.Models.Users;
 
 namespace WritingPlatform.Service.Absractions
 {
     public interface IUserService
     {
-        void AddUser(User user);
+        void AddUser(NewUserModel user);
 
         void RemoveUserById(int id);
 
-        void UpdateUser(User user);
+        void UpdateUser(UpdateUserModel user);
 
-        User GetById(int id);
+        UserModel GetById(int id);
 
-        IEnumerable<User> GetUsers();
+        IEnumerable<UserModel> GetUsers();
     }
 }

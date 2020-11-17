@@ -1,0 +1,23 @@
+﻿@using WritingPlatform.Data.Entities
+
+@model IEnumerable<User>
+
+<table class="table table-striped">
+    <tr class="info">
+        <th>Id</th>
+        <th>Name</th>
+        <th>Login</th>
+        <th>Birth date</th>
+        <th>Email</th>
+    </tr>
+@foreach (var user in Model)
+{
+<tr>
+    <td>@user.Id</td>
+    <td>@user.Name</td>
+    <td>@user.Login</td>
+    <td>@user.BirthDay</td>
+    <td>@user.Email</td>
+</tr>
+}
+</table>

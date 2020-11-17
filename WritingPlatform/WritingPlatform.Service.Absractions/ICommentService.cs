@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
-using WritingPlatform.Data.Entities;
+using WritingPlatform.Models.Comments;
 
 namespace WritingPlatform.Service.Absractions
 {
     public interface ICommentService
     {
-        void AddComment(Comment comment);
+        void AddComment(NewCommentModel comment);
 
         void RemoveCommentById(int id);
 
-        void UpdateComment(Comment comment);
+        CommentModel GetById(int id);
 
-        Comment GetById(int id);
-
-        IEnumerable<Comment> GetUsers();
+        IEnumerable<CommentModel> GetComments();
     }
 }
