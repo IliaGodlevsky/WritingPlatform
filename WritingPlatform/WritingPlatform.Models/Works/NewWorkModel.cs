@@ -10,7 +10,7 @@ namespace WritingPlatform.Models.Works
 
         public DateTime PublicationTime { get; set; }
 
-        public byte Rating { get; set; }
+        public double Rating { get; set; }
 
         public int UserId { get; set; }
 

@@ -34,7 +34,7 @@ namespace WritingPlatform.Service
 
         public IEnumerable<CommentModel> GetComments()
         {
-            var entities = uow.UserRepository.GetAll();
+            var entities = uow.CommentRepository.GetAll();
             var models = MapperService.Instance.Map<IEnumerable<CommentModel>>(entities);
 
             return models;

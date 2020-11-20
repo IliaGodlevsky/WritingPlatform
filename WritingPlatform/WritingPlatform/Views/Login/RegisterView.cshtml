@@ -1,0 +1,36 @@
+﻿@section LoginNavBar
+{
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+        </div>
+    </div>
+}
+
+@{
+    ViewBag.Title = "Register form";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <form action="/login/Register" method="get">
+        <text style="margin: 5px"><p>Login:</p></text>
+        <input style="margin: 5px" name="login" type="text"/>
+        <text style="margin: 5px"><p>Password:</p></text>
+        <input style="margin: 5px" name="password" type="password"/>
+        <text style="margin: 5px"><p>Name:</p></text>
+        <input style="margin: 5px" name="name" type="text"/>
+        <text style="margin: 5px"><p>Birth date:</p></text>
+        <input style="margin: 5px" name="birthday" type="date"/>
+        <text style="margin: 5px"><p>Email:</p></text>
+        <input style="margin: 5px" name="email" type="text"/>
+        <p><input style="margin: 5px" type="submit" value="Register"/></p>
+    </form>
+</div>

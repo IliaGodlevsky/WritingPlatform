@@ -1,12 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WritingPlatform.Models.Works
 {
-    class WorkFilteringModel
+    public class WorkFilteringModel
     {
+        public string Name { get; set; }
+
+        public string Genre { get; set; }
+
+        public DateTime? PublicationTimeFrom { get; set; }
+
+        public DateTime? PublicationTimeTo { get; set; }
+
+        public double? Rating { get; set; }
     }
 }

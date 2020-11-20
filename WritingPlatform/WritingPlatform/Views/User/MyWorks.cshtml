@@ -1,0 +1,41 @@
+﻿@using WritingPlatform.Models;
+
+@model UserWithWorksModel
+@{
+    ViewBag.Title = "MyWorks";
+}
+
+<h2>MyWorks</h2>
+
+<div>
+    <form action="/user/AddWork">
+        <input value="@Model.Id" type="hidden" name="UserId" />
+        <input value="@DateTime.Now" type="hidden" name="PublicationTime" />
+        <input value="0.0" type="hidden" name="Rating"/>
+        <text style="margin: 5px"><p>Genre:</p></text>
+        <input type="text" name="Genre" />
+        <text style="margin: 5px"><p>Name:</p></text>
+        <input type="text" name="Name" />
+        <text style="margin: 5px"><p>Text:</p></text>
+        <input type="text" name="TextOfWork" />
+        <p><input style="margin: 5px" type="submit" value="Add" /></p>
+    </form>
+</div>
+<table class="table table-striped">
+    <tr class="info">
+        <th>Name</th>
+        <th>Genre</th>
+        <th>Text</th>
+        <th>Publication</th>
+        <th></th>
+    </tr>
+    @foreach (var work in Model.Works)
+    {
+        <tr>
+            <td>@work.Name</td>
+            <td>@work.Genre</td>
+            <td>@work.TextOfWork</td>
+            <td>@work.PublicationTime</td>
+        </tr>
+    }
+</table>

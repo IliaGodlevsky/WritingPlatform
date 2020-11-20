@@ -1,6 +1,4 @@
-﻿@using WritingPlatform.Models;
-
-@section NavBar
+﻿@section LoginNavBar
 {
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -11,14 +9,22 @@
                 </button>
                 @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Register", "Register", "Account")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                </ul>
-            </div>
         </div>
     </div>
 }
 
-<h1>Welcome to Writing platform</h1>
+@{
+    ViewBag.Title = "Authorization form";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <form action="/login/Authorize" method="get">
+        <p><text style="margin: 5px">Login:</text></p>
+        <p><input style="margin: 5px" name="login" type="text"/></p>
+        <p><text>Password:</text></p>
+        <p><input style="margin: 5px" name="password" type="password"/></p>
+        <p><input style="margin: 5px" type="submit" value="Authorize"/></p>
+    </form>
+</div>

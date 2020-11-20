@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
-namespace WritingPlatform.Models.Users
+namespace WritingPlatform.Models
 {
-    public class UserModel
+    public class UserWithWorksModel
     {
         public int Id { get; set; }
 
@@ -12,10 +13,10 @@ namespace WritingPlatform.Models.Users
 
         public string Login { get; set; }
 
-        public string Password { get; set; }
-
         public string Email { get; set; }
 
         public bool IsDeleted { get; set; }
+
+        public IEnumerable<WorkWithCommentsModel> Works { get; set; }
     }
 }

@@ -2,6 +2,6 @@
 {
     public class UpdateUserModel : NewUserModel
     {
-
+        bool IsDeleted { get; set; }
     }
 }

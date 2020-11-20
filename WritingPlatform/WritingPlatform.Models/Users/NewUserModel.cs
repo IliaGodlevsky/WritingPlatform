@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WritingPlatform.Models.Users
 {
@@ -17,7 +13,5 @@ namespace WritingPlatform.Models.Users
         public string Password { get; set; }
 
         public string Email { get; set; }
-
-        public bool IsDeleted { get; set; }
     }
 }
