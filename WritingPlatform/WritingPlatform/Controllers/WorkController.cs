@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using WritingPlatform.Data.Entities;
 using WritingPlatform.Models.Works;
 using WritingPlatform.Service.Absractions;
 
@@ -22,7 +21,14 @@ namespace WritingPlatform.Controllers
         [HttpPost]
         public ActionResult PublishWork(NewWorkModel work)
         {
-            workService.AddWork(work);
+            try
+            {
+                workService.AddWork(work);
+            }
+            catch
+            {
+
+            }
 
             return Redirect("/user/index");
         }

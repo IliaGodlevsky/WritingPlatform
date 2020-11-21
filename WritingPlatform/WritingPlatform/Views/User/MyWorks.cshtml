@@ -1,5 +1,24 @@
 ﻿@using WritingPlatform.Models;
 
+@section NavBar
+{
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("My works", "MyWorks", "User")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
 @model UserWithWorksModel
 @{
     ViewBag.Title = "MyWorks";
@@ -10,17 +29,19 @@
 <div>
     <form action="/user/AddWork">
         <input value="@Model.Id" type="hidden" name="UserId" />
-        <input value="@DateTime.Now" type="hidden" name="PublicationTime" />
-        <input value="0.0" type="hidden" name="Rating"/>
-        <text style="margin: 5px"><p>Genre:</p></text>
+        <input value="0.0" type="hidden" name="Rating" />
+        <text style="margin: 5px">Genre:</text>
         <input type="text" name="Genre" />
-        <text style="margin: 5px"><p>Name:</p></text>
+        <text style="margin: 5px">Name:</text>
         <input type="text" name="Name" />
-        <text style="margin: 5px"><p>Text:</p></text>
+        <text style="margin: 5px">Date of publication:</text>
+        <input style="margin: 5px" type="date" name="PublicationTime" />
+        <text style="margin: 5px">Text:</text>
         <input type="text" name="TextOfWork" />
-        <p><input style="margin: 5px" type="submit" value="Add" /></p>
+        <input style="margin: 5px" type="submit" value="Add" />
     </form>
 </div>
+
 <table class="table table-striped">
     <tr class="info">
         <th>Name</th>
