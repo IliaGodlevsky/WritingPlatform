@@ -85,7 +85,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Repositories\WorkRepository.cs" />
+    <Compile Include="Repositories\CompositionRepository.cs" />
     <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup />

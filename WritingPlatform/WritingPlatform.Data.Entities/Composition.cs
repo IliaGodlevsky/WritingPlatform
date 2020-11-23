@@ -1,8 +1,9 @@
 ﻿using System;
+using WritingPlatform.Base.Abstractions;
 
-namespace WritingPlatform.Models.Works
+namespace WritingPlatform.Data.Entities
 {
-    public class NewWorkModel
+    public class Composition : BaseEntity
     {
         public string Name { get; set; }
 
@@ -12,8 +13,10 @@ namespace WritingPlatform.Models.Works
 
         public double Rating { get; set; }
 
+        public int NumberOfMarks { get; set; }
+
         public int UserId { get; set; }
 
-        public string TextOfWork { get; set; }
+        public string Content { get; set; }
     }
 }

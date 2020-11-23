@@ -52,20 +52,19 @@ namespace WritingPlatform.Controllers
 
         public ActionResult Login()
         {
-            return View(new LoginModel());
+            return View(new Credentials());
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model)
+        public ActionResult Login(Credentials model)
         {
             UserModel userModel = null;
             if (ModelState.IsValid)
             {
-                userModel = userService.GetUsers().
-                  FirstOrDefault(user => user.Login == model.Login && user.Password == model.Password && !user.IsDeleted);
+                userModel = userService.GetByCredentials(model);
 
-                if(userModel!=null)
+                if (userModel != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.Login, true);
                     return RedirectToAction("Index", "User");

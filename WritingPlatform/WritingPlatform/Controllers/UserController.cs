@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using WritingPlatform.Models;
 using WritingPlatform.Models.Users;
-using WritingPlatform.Models.Works;
 using WritingPlatform.Service.Absractions;
 
 namespace WritingPlatform.Controllers
@@ -10,17 +8,10 @@ namespace WritingPlatform.Controllers
     public class UserController : Controller
     {
         private readonly IUserService userService;
-        private readonly IWorkService workService;
-        private readonly ICommentService commentService;
 
-        public UserController(
-            IUserService userService,
-            IWorkService workService,
-            ICommentService commentService)
+        public UserController(IUserService userService)
         {
             this.userService = userService;
-            this.workService = workService;
-            this.commentService = commentService;
         }
 
         [HttpGet]
@@ -30,59 +21,49 @@ namespace WritingPlatform.Controllers
         }
 
         [Authorize]
-        public ActionResult MyWorks()
+        public ActionResult MyCompositions(int id)
         {
             if (User.Identity.IsAuthenticated)
             {
-                var user = userService.GetUsers().FirstOrDefault(u => u.Login == User.Identity.Name);
-                var works = workService.GetWorks();
-                var comments = commentService.GetComments();
-
-                var worksWithComments = works.GroupJoin(comments,
-                    work => work.Id,
-                    comment => comment.WorkId,
-                    (work, comment) =>
-                    new WorkWithCommentsModel
-                    {
-                        Comments = comment,
-                        Name = work.Name,
-                        UserId = work.UserId,
-                        Genre = work.Genre,
-                        TextOfWork = work.TextOfWork,
-                        Rating = work.Rating,
-                        PublicationTime = work.PublicationTime
-                    });
-
-                var userWorks = worksWithComments.Where(work => work.UserId == user.Id);
-
-                var userWithWorks = new UserWithWorksModel
-                {
-                    Id = user.Id,
-                    Name = user.Name,
-                    Login = user.Login,
-                    IsDeleted = user.IsDeleted,
-                    Works = userWorks,
-                    Email = user.Email,
-                    BirthDay = user.BirthDay
-                };
-
+                var userWithWorks = userService.GetUsersWithCompositions().
+                    FirstOrDefault(user => user.Login == User.Identity.Name);
                 return View(userWithWorks);
             }
 
             return Redirect("/home/Index");
         }
 
+        [Authorize]
         [HttpGet]
-        public ActionResult AllWorks()
+        public ActionResult AllCompositions()
         {
-            return View();
-        }
-        
-        public ActionResult AddWork(NewWorkModel model)
-        {
-            workService.AddWork(model);
+            if (User.Identity.IsAuthenticated)
+            {
+                var usersWithWorks = userService.GetUsersWithCompositions();
+                return View(usersWithWorks);
+            }
 
-            return Redirect("/user/myworks");
+            return Redirect("/home/Index");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult DeleteAccount(int id)
+        {
+            var user = userService.GetById(id);
+            user.IsDeleted = true;
+
+            //userService.UpdateUser();
+            //FormsAuthentication.SignOut();
+
+            return Redirect("/home/index");
+        }
+
+        public ActionResult UpdateUser(int id)
+        {
+            var user = userService.GetById(id);
+
+            return View();
         }
     }
 }

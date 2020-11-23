@@ -1,14 +1,14 @@
 ﻿using System.Web.Mvc;
-using WritingPlatform.Models.Works;
+using WritingPlatform.Models.Compositions;
 using WritingPlatform.Service.Absractions;
 
 namespace WritingPlatform.Controllers
 {
-    public class WorkController : Controller
+    public class CompositionController : Controller
     {
-        private readonly IWorkService workService;
+        private readonly ICompositionService workService;
 
-        public WorkController(IWorkService workService)
+        public CompositionController(ICompositionService workService)
         {
             this.workService = workService;
         }
@@ -19,7 +19,7 @@ namespace WritingPlatform.Controllers
         }
 
         [HttpPost]
-        public ActionResult PublishWork(NewWorkModel work)
+        public ActionResult PublishWork(NewCompositionModel work)
         {
             try
             {

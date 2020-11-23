@@ -5,24 +5,24 @@ using WritingPlatform.Data.Entities;
 
 namespace WritingPlatform.Data.Repositories
 {
-    internal class WorkRepository : Repository<Work>, IWorkRepository
+    internal class CompositionRepository : Repository<Composition>, ICompositionRepository
     {
 
-        public WorkRepository(DbContext context) : base(context)
+        public CompositionRepository(DbContext context) : base(context)
         {
         }
 
-        public Work GetByGenre(string genre)
+        public Composition GetByGenre(string genre)
         {
             return dbSet.First(work => work.Genre.Equals(genre));
         }
 
-        public Work GetByName(string name)
+        public Composition GetByName(string name)
         {
             return dbSet.First(work => work.Name.Equals(name));
         }
 
-        public Work GetByUser(User user)
+        public Composition GetByUser(User user)
         {
             return dbSet.First(work => work.UserId.Equals(user.Id));
         }

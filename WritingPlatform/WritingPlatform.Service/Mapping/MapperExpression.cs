@@ -9,7 +9,7 @@ namespace WritingPlatform.Service.Mapping
         {
             AddProfile<UserProfile>();
             AddProfile<CommentProfile>();
-            AddProfile<WorkProfile>();
+            AddProfile<CompositionProfile>();
         }
     }
 }

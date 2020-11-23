@@ -9,12 +9,12 @@ namespace WritingPlatform.Controllers
     public class HomeController : Controller
     {
         private readonly IUserService userService;
-        private readonly IWorkService workService;
+        private readonly ICompositionService workService;
         private readonly ICommentService commentService;
 
         public HomeController(
             IUserService userService,
-            IWorkService workService,
+            ICompositionService workService,
             ICommentService commentService)
         {
             this.userService = userService;

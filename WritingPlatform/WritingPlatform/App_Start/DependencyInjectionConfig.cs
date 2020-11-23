@@ -47,8 +47,8 @@ namespace WritingPlatform.App_Start
                     .To<UserService>()
                     .InRequestScope();
 
-                Bind<IWorkService>()
-                    .To<WorkService>()
+                Bind<ICompositionService>()
+                    .To<CompositionService>()
                     .InRequestScope();
 
                 Bind<ICommentService>()

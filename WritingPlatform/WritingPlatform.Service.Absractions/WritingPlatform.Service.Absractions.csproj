@@ -78,7 +78,7 @@
   <ItemGroup>
     <Compile Include="ICommentService.cs" />
     <Compile Include="IUserService.cs" />
-    <Compile Include="IWorkService.cs" />
+    <Compile Include="ICompositionService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

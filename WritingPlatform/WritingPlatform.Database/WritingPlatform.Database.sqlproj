@@ -61,6 +61,6 @@
   <ItemGroup>
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\Comment.sql" />
-    <Build Include="Tables\Work.sql" />
+    <Build Include="Tables\Composition.sql" />
   </ItemGroup>
 </Project>

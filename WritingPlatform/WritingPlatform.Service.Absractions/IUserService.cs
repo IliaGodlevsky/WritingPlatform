@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using WritingPlatform.Models;
+using WritingPlatform.Models.Identity;
 using WritingPlatform.Models.Users;
 
 namespace WritingPlatform.Service.Absractions
@@ -12,6 +14,10 @@ namespace WritingPlatform.Service.Absractions
         void UpdateUser(UpdateUserModel user);
 
         UserModel GetById(int id);
+
+        UserModel GetByCredentials(Credentials creds);
+
+        IEnumerable<UserWithCompositionsModel> GetUsersWithCompositions();
 
         IEnumerable<UserModel> GetUsers();
     }

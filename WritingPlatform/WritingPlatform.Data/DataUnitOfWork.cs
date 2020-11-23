@@ -12,7 +12,7 @@ namespace WritingPlatform.Data
 
         private ICommentRepository commentRepository;
 
-        private IWorkRepository workRepository;
+        private ICompositionRepository compositionRepository;
 
         public DataUnitOfWork(string connectionString)
         {
@@ -45,16 +45,16 @@ namespace WritingPlatform.Data
             }
         }
 
-        public IWorkRepository WorkRepository
+        public ICompositionRepository CompositionRepository
         {
             get
             {
-                if (workRepository == null)
+                if (compositionRepository == null)
                 {
-                    workRepository = new WorkRepository(context);
+                    compositionRepository = new CompositionRepository(context);
                 }
 
-                return workRepository;
+                return compositionRepository;
             }
         }
 

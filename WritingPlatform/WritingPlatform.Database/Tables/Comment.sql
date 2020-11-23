@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[Comment]
 (
 	[Id] INT NOT NULL IDENTITY(1,1),
-	[Text] NVARCHAR(1000) NOT NULL,
+	[Content] NVARCHAR(1000) NOT NULL,
 	[Workid] INT NOT NULL,
 	CONSTRAINT PK_Comment PRIMARY KEY ([Id])
 )

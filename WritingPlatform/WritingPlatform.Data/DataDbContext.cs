@@ -17,7 +17,7 @@ namespace WritingPlatform.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<User>().ToTable(nameof(User));
-            modelBuilder.Entity<Work>().ToTable(nameof(Work));
+            modelBuilder.Entity<Composition>().ToTable(nameof(Composition));
             modelBuilder.Entity<Comment>().ToTable(nameof(Comment));
         }
     }

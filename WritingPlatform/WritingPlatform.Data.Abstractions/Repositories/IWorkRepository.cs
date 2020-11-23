@@ -3,10 +3,10 @@ using WritingPlatform.Data.Entities;
 
 namespace WritingPlatform.Data.Abstractions.Repositories
 {
-    public interface IWorkRepository : IRepository<Work>
+    public interface ICompositionRepository : IRepository<Composition>
     {
-        Work GetByName(string name);
-        Work GetByUser(User user);
-        Work GetByGenre(string genre);
+        Composition GetByName(string name);
+        Composition GetByUser(User user);
+        Composition GetByGenre(string genre);
     }
 }
