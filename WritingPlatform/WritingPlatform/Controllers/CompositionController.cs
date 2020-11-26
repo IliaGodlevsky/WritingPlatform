@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using WritingPlatform.Models.Compositions;
 using WritingPlatform.Service.Absractions;
 
@@ -6,11 +7,11 @@ namespace WritingPlatform.Controllers
 {
     public class CompositionController : Controller
     {
-        private readonly ICompositionService workService;
+        private readonly ICompositionService compositionService;
 
-        public CompositionController(ICompositionService workService)
+        public CompositionController(ICompositionService compositionService)
         {
-            this.workService = workService;
+            this.compositionService = compositionService;
         }
 
         public ActionResult Index()
@@ -18,19 +19,31 @@ namespace WritingPlatform.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult PublishWork(NewCompositionModel work)
+        [HttpGet]
+        public ActionResult Details(CompositionWithCommentsModel model)
         {
-            try
-            {
-                workService.AddWork(work);
-            }
-            catch
-            {
+            return View(model);
+        }
 
-            }
+        public ActionResult PublishComposition(int id)
+        {
+            var newComposition = new NewCompositionModel
+            {                
+                UserId = id,
+                Name = string.Empty,
+                Genre = string.Empty,
+                Content = string.Empty
+            };
 
-            return Redirect("/user/index");
+            return View(newComposition);
+        }
+
+        public ActionResult AddComposition(NewCompositionModel model)
+        {
+            model.PublicationTime = DateTime.Now.Date;
+            compositionService.AddWork(model);
+
+            return Redirect($"/User/Index/{model.UserId}");
         }
     }
 }

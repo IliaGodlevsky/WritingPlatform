@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using WritingPlatform.Data.Entities;
+using WritingPlatform.Models;
 using WritingPlatform.Models.Users;
 
 namespace WritingPlatform.Service.Mapping.Profiles
@@ -9,6 +10,7 @@ namespace WritingPlatform.Service.Mapping.Profiles
         public UserProfile()
         {
             CreateMap<User, UserModel>();
+            CreateMap<User, UserWithCompositionsModel>();
             CreateMap<UserModel, User>();
             CreateMap<NewUserModel, User>();
         }

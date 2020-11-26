@@ -39,7 +39,7 @@ namespace WritingPlatform.Controllers
                     if (userModel != null) 
                     {
                         FormsAuthentication.SetAuthCookie(model.Login, true);
-                        return RedirectToAction("Index", "User", userModel);
+                        return Redirect($"/User/Index/{userModel.Id}");
                     }
                 }
                 else
@@ -59,15 +59,14 @@ namespace WritingPlatform.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(Credentials model)
         {
-            UserModel userModel = null;
             if (ModelState.IsValid)
             {
-                userModel = userService.GetByCredentials(model);
+                UserModel userModel = userService.GetByCredentials(model);
 
                 if (userModel != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.Login, true);
-                    return RedirectToAction("Index", "User");
+                    return Redirect($"/User/Index/{userModel.Id}");
                 }
                 else
                 {

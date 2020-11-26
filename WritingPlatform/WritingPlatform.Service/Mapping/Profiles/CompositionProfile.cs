@@ -13,6 +13,7 @@ namespace WritingPlatform.Service.Mapping.Profiles
             CreateMap<NewCompositionModel, Composition>();
             CreateMap<UpdateCompositionkModel, Composition>();
             CreateMap<CompositionWithCommentsModel, Composition>();
+            CreateMap<Composition, CompositionWithCommentsModel>();
         }
     }
 }

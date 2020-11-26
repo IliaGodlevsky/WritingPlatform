@@ -11,7 +11,7 @@ namespace WritingPlatform.Service.Absractions
 
         void RemoveUserById(int id);
 
-        void UpdateUser(UpdateUserModel user);
+        void UpdateUser(UserModel user);
 
         UserModel GetById(int id);
 

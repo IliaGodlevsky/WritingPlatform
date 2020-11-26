@@ -1,0 +1,42 @@
+﻿@using WritingPlatform.Models.Compositions
+@using WritingPlatform.App_Code
+@using WritingPlatform.Models
+
+@model IndexViewModel<AuthoreCompositionModel>
+@{
+    ViewBag.Title = "AllWorks";
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Author</th>
+            <th scope="col">Name</th>
+            <th scope="col">Genre</th>
+            <th scope="col">Rating</th>
+            <th scope="col">Publication time</th>
+            <th scope="col">Read composition</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.Compositions.Count(); i++)
+        {
+            <tr>
+                <td>@Model.Compositions.ElementAt(i).Author.Login</td>
+                <td>@Model.Compositions.ElementAt(i).Name</td>
+                <td>@Model.Compositions.ElementAt(i).Genre</td>
+                <td>@Model.Compositions.ElementAt(i).Rating</td>
+                <td>@Model.Compositions.ElementAt(i).PublicationTime</td>
+                <td>
+                    @Html.ActionLink("Read", "ReadComposition", @Model.Compositions.ElementAt(i), new { @class = "btn btnprimary btn-large" })
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+<br />
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("AllWorksPaged", new { page = x }))
+</div>

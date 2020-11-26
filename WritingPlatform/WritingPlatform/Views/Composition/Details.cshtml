@@ -1,0 +1,22 @@
+﻿@model WritingPlatform.Models.Compositions.CompositionWithCommentsModel
+
+    <form action="/user/mycompositions">
+        <input type="hidden" name="id" value="@Model.UserId" />
+        <lable>Name</lable>
+        <text class="form-control">@Model.Name</text>
+        <lable>Genre</lable>
+        <text class="form-control">@Model.Genre</text>
+        <lable>Rating</lable>
+        <text class="form-control">@Model.Rating</text>
+        <lable>Publication</lable>
+        <text class="form-control">@Model.PublicationTime</text>
+        <lable>Content</lable>
+        <text class="form-control">@Model.Content</text>
+        @foreach (var comment in Model.Comments)
+        {
+            <div>
+                <text class="form-control">@comment.Text</text>
+            </div>
+        }
+        <input type="submit" value="Back" />
+    </form>

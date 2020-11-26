@@ -31,7 +31,8 @@ namespace WritingPlatform.Service
 
         public UserModel GetByCredentials(Credentials creds)
         {
-            var entity = uow.UserRepository.GetAll().FirstOrDefault(u => u.Login == creds.Login && u.Password == creds.Password);
+            var entity = uow.UserRepository.GetAll().
+                FirstOrDefault(u => u.Login == creds.Login && u.Password == creds.Password && !u.IsDeleted);
             var model = MapperService.Instance.Map<User, UserModel>(entity);
 
             return model;
@@ -92,9 +93,9 @@ namespace WritingPlatform.Service
             uow.Commit();
         }
 
-        public void UpdateUser(UpdateUserModel user)
+        public void UpdateUser(UserModel user)
         {
-            var entity = MapperService.Instance.Map<UpdateUserModel, User>(user);
+            var entity = MapperService.Instance.Map<UserModel, User>(user);
             uow.UserRepository.Update(entity);
 
             uow.Commit();

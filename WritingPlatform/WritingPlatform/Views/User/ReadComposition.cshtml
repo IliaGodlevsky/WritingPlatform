@@ -1,0 +1,7 @@
+﻿@model WritingPlatform.Models.Compositions.AuthoreCompositionModel
+
+<form action="/user/AllWorks">
+    <input type="hidden" value="@ViewBag.CurrentUserId" name="id"/>
+    <label class="form-control"> Content</label>
+    <text class="form-control">@Model.Content</text>
+</form>
