@@ -1,30 +1,28 @@
 ﻿@model WritingPlatform.Models.Users.UserModel
 
-<div>
-    <h4>Information</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Login)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Login)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btnprimary btn-large" })
-    @Html.ActionLink("Publish composition", "PublishComposition", new { id = Model.Id }, new { @class = "btn btnprimary btn-large" })
-    @Html.ActionLink("Your compositions", "MyCompositions", new { id = Model.Id }, new { @class = "btn btnprimary btn-large" })
-    @Html.ActionLink("All compositions", "AllWorks", new { id = Model.Id }, new { @class = "btn btnprimary btn-large" })
-    @Html.ActionLink("Get top list", "GetTop")
-</p>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/User/Edit/@Model.Id">Edit</a></li>
+                    <li><a href="/User/PublishComposition/@Model.Id">Publish composition</a></li>
+                    <li><a href="/User/MyCompositions/@Model.Id">My compositions</a></li>
+                    <li><a href="/User/AllWorks/@Model.Id">All compositions</a></li>
+                    <li><a href="/User/GetTop">Get toplist</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><h6>Hello, @Model.Login</h6></li>
+                    <li><a href="/Account/Index"><span class="glyphicon glyphicon-log-out"></span> Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>

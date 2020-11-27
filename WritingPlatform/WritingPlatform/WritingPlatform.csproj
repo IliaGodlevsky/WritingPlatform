@@ -221,6 +221,7 @@
     <Content Include="Views\User\AllWorks.cshtml" />
     <Content Include="Views\User\ReadComposition.cshtml" />
     <Content Include="Views\User\GetTop.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

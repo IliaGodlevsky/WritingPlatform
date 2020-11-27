@@ -16,6 +16,11 @@ namespace WritingPlatform.Controllers
             this.userService = userService;
         }
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ActionResult Register()
         {
             return View(new NewUserModel());
