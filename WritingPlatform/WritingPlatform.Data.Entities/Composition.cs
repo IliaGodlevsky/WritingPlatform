@@ -11,10 +11,6 @@ namespace WritingPlatform.Data.Entities
 
         public DateTime PublicationTime { get; set; }
 
-        public double Rating { get; set; }
-
-        public int NumberOfMarks { get; set; }
-
         public int UserId { get; set; }
 
         public string Content { get; set; }

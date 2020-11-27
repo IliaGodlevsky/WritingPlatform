@@ -12,16 +12,25 @@ namespace WritingPlatform.Controllers
     public class UserController : Controller
     {
         private readonly IUserService userService;
+        private readonly ICompositionService compositionService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, ICompositionService service)
         {
             this.userService = userService;
+            compositionService = service;
+        }
+
+        [Authorize]
+        public ActionResult Start()
+        {
+            var model = userService.GetUsers().
+                FirstOrDefault(user => user.Login == User.Identity.Name);
+
+            return View("Index", model);
         }
 
         public ActionResult Index(int id)
         {
-            ViewBag.CurrentUserId = id;
-
             var model = userService.GetById(id);
             return View(model);
         }
@@ -61,13 +70,8 @@ namespace WritingPlatform.Controllers
             userModel = userService.GetUsers().
                FirstOrDefault(user => user.Id == update.Id);
 
-            if (userModel == null)
-            {
-                FormsAuthentication.SignOut();
-                return Redirect("Account/Login");
-            }
-
-            return RedirectToAction($"/index/{userModel.Id}");
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login","Account");
         }
 
         [Authorize]
@@ -107,38 +111,33 @@ namespace WritingPlatform.Controllers
         }
 
         [Authorize]
-        public ActionResult ReadComposition(AuthoreCompositionModel model)
+        public ActionResult ReadComposition(CompositionWithCommentsModel model)
         {
+            ViewBag.CurrentUser = userService.GetById(model.UserId);
             return View(model);
         }
 
-        private IndexViewModel<AuthoreCompositionModel> CreateIndexViewModel(int pageNumber, int pageSize)
+        [Authorize]
+        public ActionResult GetTop()
         {
             var users = userService.GetUsersWithCompositions();
-            var compositions = new List<AuthoreCompositionModel>();
-
-            foreach (var user in users)
+            var compositions = new List<CompositionWithCommentsModel>();
+            foreach(var user in users)
             {
-                foreach (var composition in user.Compositions)
-                {
-                    var authorComposition = new AuthoreCompositionModel
-                    {
-                        Id = composition.Id,
-                        Name = composition.Name,
-                        Genre = composition.Genre,
-                        Content = composition.Content,
-                        PublicationTime = composition.PublicationTime,
-                        Rating = composition.Rating,
-                        NumberOfMarks = composition.NumberOfMarks,
-                        Author = user
-                    };
-
-                    compositions.Add(authorComposition);
-                }
+                compositions.AddRange(user.Compositions);
             }
 
+            compositions = compositions.AsEnumerable().
+                OrderBy(composition => composition.Comments.Select(com => com.Mark).Average()).ToList();
+            ViewBag.Ratings = compositions.Select(composition => composition.Comments.Select(com => com.Mark).Average()).ToList();
+            return View(compositions);
+        }
+
+        private IndexViewModel<CompositionWithCommentsModel> CreateIndexViewModel(int pageNumber, int pageSize)
+        {
+            var compositions = compositionService.GetCompositionsWithComments();
+
             int totalPages = compositions.Count();
-            compositions = compositions.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
 
             var pageInfo = new PageInfo 
             { 
@@ -147,7 +146,7 @@ namespace WritingPlatform.Controllers
                 TotalItems = totalPages 
             };
 
-            return new IndexViewModel<AuthoreCompositionModel> { PageInfo = pageInfo, Compositions = compositions };
+            return new IndexViewModel<CompositionWithCommentsModel> { PageInfo = pageInfo, Compositions = compositions };
         }
     }
 }

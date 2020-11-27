@@ -18,6 +18,7 @@ namespace WritingPlatform.Service.Absractions
 
         IEnumerable<CompositionModel> GetWorks();
 
+        IEnumerable<CompositionWithCommentsModel> GetCompositionsWithComments();
 
     }
 }

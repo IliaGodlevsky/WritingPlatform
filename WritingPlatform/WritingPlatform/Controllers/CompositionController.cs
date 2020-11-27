@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using WritingPlatform.Models.Compositions;
 using WritingPlatform.Service.Absractions;
@@ -22,6 +23,13 @@ namespace WritingPlatform.Controllers
         [HttpGet]
         public ActionResult Details(CompositionWithCommentsModel model)
         {
+            var composition = compositionService.
+                GetCompositionsWithComments().
+                FirstOrDefault(c => c.Id == model.Id);
+            var rating = composition.Comments.Select(com => com.Mark).Average();
+
+            ViewBag.Comments = composition.Comments;
+            ViewBag.Rating = rating;
             return View(model);
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WritingPlatform.Data.Abstractions;
 using WritingPlatform.Data.Entities;
+using WritingPlatform.Models.Comments;
 using WritingPlatform.Models.Compositions;
 using WritingPlatform.Service.Absractions;
 using WritingPlatform.Service.Mapping;
@@ -65,6 +66,26 @@ namespace WritingPlatform.Service
             uow.CompositionRepository.Update(entity);
 
             uow.Commit();
+        }
+
+        public IEnumerable<CompositionWithCommentsModel> GetCompositionsWithComments()
+        {
+            var compositionEntities = uow.CompositionRepository.GetAll();
+            var commentEntities = uow.CommentRepository.GetAll();
+
+            var compositionsWithComments = compositionEntities.GroupJoin(
+                commentEntities,
+                composition => composition.Id,
+                comment => comment.WorkId,
+                (composition, comments) =>
+                {
+                    var compositionModel = MapperService.Instance.Map<Composition, CompositionWithCommentsModel>(composition);
+                    var commentModels = MapperService.Instance.Map<IEnumerable<CommentModel>>(comments);
+                    compositionModel.Comments = commentModels;
+                    return compositionModel;
+                });
+
+            return compositionsWithComments;
         }
     }
 }

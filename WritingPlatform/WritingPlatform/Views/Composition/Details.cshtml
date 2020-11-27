@@ -6,16 +6,17 @@
         <text class="form-control">@Model.Name</text>
         <lable>Genre</lable>
         <text class="form-control">@Model.Genre</text>
-        <lable>Rating</lable>
-        <text class="form-control">@Model.Rating</text>
+        <label class="form-control">Rating</label>
+        <text class="form-control">@ViewBag.Rating</text>
         <lable>Publication</lable>
         <text class="form-control">@Model.PublicationTime</text>
         <lable>Content</lable>
         <text class="form-control">@Model.Content</text>
-        @foreach (var comment in Model.Comments)
+        <text>Comments</text>
+        @foreach (var comment in ViewBag.Comments)
         {
             <div>
-                <text class="form-control">@comment.Text</text>
+                <text class="form-control">@comment.Content</text>
             </div>
         }
         <input type="submit" value="Back" />

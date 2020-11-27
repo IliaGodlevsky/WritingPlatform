@@ -168,6 +168,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\CompositionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,9 +220,11 @@
     <Content Include="Views\Composition\PublishComposition.cshtml" />
     <Content Include="Views\User\AllWorks.cshtml" />
     <Content Include="Views\User\ReadComposition.cshtml" />
+    <Content Include="Views\User\GetTop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Comment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
