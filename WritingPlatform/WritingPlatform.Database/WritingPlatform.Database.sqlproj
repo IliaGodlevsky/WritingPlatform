@@ -62,5 +62,6 @@
     <Build Include="Tables\User.sql" />
     <Build Include="Tables\Comment.sql" />
     <Build Include="Tables\Composition.sql" />
+    <Build Include="Tables\Mark.sql" />
   </ItemGroup>
 </Project>

@@ -7,6 +7,5 @@ namespace WritingPlatform.Models
         public IEnumerable<TModel> Compositions { get; set; }
 
         public PageInfo PageInfo { get; set; }
-    }
-    
+    }   
 }

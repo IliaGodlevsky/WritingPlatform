@@ -11,6 +11,8 @@ namespace WritingPlatform.Service.Absractions
 
         CommentModel GetById(int id);
 
+        void UpdateComment(UpdateCommentModel model);
+
         IEnumerable<CommentModel> GetComments();
     }
 }

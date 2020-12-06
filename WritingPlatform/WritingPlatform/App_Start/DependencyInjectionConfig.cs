@@ -55,6 +55,9 @@ namespace WritingPlatform.App_Start
                     .To<CommentService>()
                     .InRequestScope();
 
+                Bind<IMarkService>()
+                    .To<MarkService>()
+                    .InRequestScope();
             }
         }
     }

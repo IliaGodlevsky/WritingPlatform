@@ -33,7 +33,7 @@ namespace WritingPlatform.Controllers
             UserModel userModel = null;
 
             if (ModelState.IsValid)
-            {
+            {                
                 userModel = userService.GetUsers().FirstOrDefault(user => user.Login == model.Login);
 
                 if (userModel == null)
@@ -41,15 +41,15 @@ namespace WritingPlatform.Controllers
                     userService.AddUser(model);
                     userModel = userService.GetUsers().FirstOrDefault(u => u.Login == model.Login);
 
-                    if (userModel != null) 
+                    if (userModel != null)
                     {
                         FormsAuthentication.SetAuthCookie(model.Login, true);
-                        return Redirect($"/User/Index/{userModel.Id}");
+                        return Redirect("/User/Index");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("Such a user exists", "User with such a login already exists");
+                    ModelState.AddModelError("Such an user exists", "User with such a login already exists");
                 }
             }
             return View(model);
@@ -71,11 +71,11 @@ namespace WritingPlatform.Controllers
                 if (userModel != null)
                 {
                     FormsAuthentication.SetAuthCookie(model.Login, true);
-                    return Redirect($"/User/Index/{userModel.Id}");
+                    return Redirect("/User/Index");
                 }
                 else
                 {
-                    ModelState.AddModelError("Such a user doesn't exist", "User with such a login doesn't exist");
+                    ModelState.AddModelError("Such an user doesn't exist", "User with such a login doesn't exist");
                 }
             }
 

@@ -10,5 +10,7 @@ namespace WritingPlatform.Data.Abstractions
         ICommentRepository CommentRepository { get; }
 
         ICompositionRepository CompositionRepository { get; }
+
+        IMarkRepository MarkRepository { get; }
     }
 }

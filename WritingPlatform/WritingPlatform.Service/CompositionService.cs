@@ -19,7 +19,7 @@ namespace WritingPlatform.Service
             this.uow = uow;
         }
 
-        public void AddWork(NewCompositionModel work)
+        public void AddComposition(NewCompositionModel work)
         {
             var entity = MapperService.Instance.Map<NewCompositionModel, Composition>(work);
             uow.CompositionRepository.Create(entity);
@@ -27,7 +27,7 @@ namespace WritingPlatform.Service
             uow.Commit();
         }
 
-        public CompositionModel GetBy(Func<CompositionModel, bool> selector)
+        public CompositionModel GetCompositionBy(Func<CompositionModel, bool> selector)
         {
             var entities = uow.CompositionRepository.GetAll();
             var models = MapperService.Instance.Map<IEnumerable<CompositionModel>>(entities);
@@ -36,7 +36,7 @@ namespace WritingPlatform.Service
             return filteredModel;
         }
 
-        public CompositionModel GetById(int id)
+        public CompositionModel GetCompositionById(int id)
         {
             var entity = uow.CompositionRepository.GetById(id);
             var model = MapperService.Instance.Map<Composition, CompositionModel>(entity);
@@ -44,7 +44,7 @@ namespace WritingPlatform.Service
             return model;
         }
 
-        public IEnumerable<CompositionModel> GetWorks()
+        public IEnumerable<CompositionModel> GetCompositions()
         {
             var entities = uow.CompositionRepository.GetAll();
             var models = MapperService.Instance.Map<IEnumerable<CompositionModel>>(entities);
@@ -52,7 +52,7 @@ namespace WritingPlatform.Service
             return models;
         }
 
-        public void RemoveUserById(int id)
+        public void RemoveCompositionById(int id)
         {
             var work = uow.CompositionRepository.GetById(id);
             uow.CompositionRepository.Remove(work);
@@ -60,32 +60,12 @@ namespace WritingPlatform.Service
             uow.Commit();
         }
 
-        public void UpdateWork(UpdateCompositionkModel work)
+        public void UpdateComposition(UpdateCompositionModel work)
         {
-            var entity = MapperService.Instance.Map<UpdateCompositionkModel, Composition>(work);
+            var entity = MapperService.Instance.Map<UpdateCompositionModel, Composition>(work);
             uow.CompositionRepository.Update(entity);
 
             uow.Commit();
-        }
-
-        public IEnumerable<CompositionWithCommentsModel> GetCompositionsWithComments()
-        {
-            var compositionEntities = uow.CompositionRepository.GetAll();
-            var commentEntities = uow.CommentRepository.GetAll();
-
-            var compositionsWithComments = compositionEntities.GroupJoin(
-                commentEntities,
-                composition => composition.Id,
-                comment => comment.WorkId,
-                (composition, comments) =>
-                {
-                    var compositionModel = MapperService.Instance.Map<Composition, CompositionWithCommentsModel>(composition);
-                    var commentModels = MapperService.Instance.Map<IEnumerable<CommentModel>>(comments);
-                    compositionModel.Comments = commentModels;
-                    return compositionModel;
-                });
-
-            return compositionsWithComments;
         }
     }
 }

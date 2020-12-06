@@ -11,6 +11,8 @@ namespace WritingPlatform.Service.Mapping.Profiles
             CreateMap<Comment, CommentModel>();
             CreateMap<CommentModel, Comment>();
             CreateMap<NewCommentModel, Comment>();
+            CreateMap<UpdateCommentModel, Comment>();
+            CreateMap<Comment, UpdateCommentModel>();
         }
     }
 }

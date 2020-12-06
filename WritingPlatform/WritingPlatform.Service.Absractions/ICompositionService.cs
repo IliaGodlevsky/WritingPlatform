@@ -6,19 +6,17 @@ namespace WritingPlatform.Service.Absractions
 {
     public interface ICompositionService
     {
-        void AddWork(NewCompositionModel work);
+        void AddComposition(NewCompositionModel work);
 
-        void RemoveUserById(int id);
+        void RemoveCompositionById(int id);
 
-        void UpdateWork(UpdateCompositionkModel work);
+        void UpdateComposition(UpdateCompositionModel work);
 
-        CompositionModel GetById(int id);
+        CompositionModel GetCompositionById(int id);
 
-        CompositionModel GetBy(Func<CompositionModel, bool> selector);
+        CompositionModel GetCompositionBy(Func<CompositionModel, bool> selector);
 
-        IEnumerable<CompositionModel> GetWorks();
-
-        IEnumerable<CompositionWithCommentsModel> GetCompositionsWithComments();
+        IEnumerable<CompositionModel> GetCompositions();
 
     }
 }

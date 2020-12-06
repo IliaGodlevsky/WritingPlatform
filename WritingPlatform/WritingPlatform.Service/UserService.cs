@@ -23,6 +23,7 @@ namespace WritingPlatform.Service
 
         public void AddUser(NewUserModel user)
         {
+            user.Password = CriptingService.HashPassword(user.Password);
             var entity = MapperService.Instance.Map<NewUserModel, User>(user);
             uow.UserRepository.Create(entity);
 
@@ -32,7 +33,7 @@ namespace WritingPlatform.Service
         public UserModel GetByCredentials(Credentials creds)
         {
             var entity = uow.UserRepository.GetAll().
-                FirstOrDefault(u => u.Login == creds.Login && u.Password == creds.Password && !u.IsDeleted);
+                FirstOrDefault(user => AreValidCredentials(creds, user));
             var model = MapperService.Instance.Map<User, UserModel>(entity);
 
             return model;
@@ -61,24 +62,27 @@ namespace WritingPlatform.Service
             var userEntities = uow.UserRepository.GetAll();
 
             var compositionsWithComments = compositionEntities.GroupJoin(
-                commentEntities,
+                commentEntities, 
                 composition => composition.Id, 
-                comment => comment.WorkId,
+                comment => comment.CompositionId,
                 (composition, comments) =>
                 {
-                    var compositionModel = MapperService.Instance.Map<Composition, CompositionWithCommentsModel>(composition);
-                    var commentModels = MapperService.Instance.Map<IEnumerable<CommentModel>>(comments);
+                    var compositionModel = MapperService.Instance.
+                        Map<Composition, CompositionWithCommentsModel>(composition);
+                    var commentModels = MapperService.Instance.
+                        Map<IEnumerable<CommentModel>>(comments);
                     compositionModel.Comments = commentModels;
                     return compositionModel;
                 });
 
             var usersWithCompositions = userEntities.GroupJoin(
-                compositionsWithComments,
+                compositionsWithComments, 
                 userEntity => userEntity.Id,
                 compositionWithComments => compositionWithComments.UserId,
                 (userEntity, compositions) =>
                 {
-                    var userModel = MapperService.Instance.Map<User, UserWithCompositionsModel>(userEntity);
+                    var userModel = MapperService.Instance.
+                        Map<User, UserWithCompositionsModel>(userEntity);
                     userModel.Compositions = compositions;
                     return userModel;
                 });
@@ -90,15 +94,22 @@ namespace WritingPlatform.Service
         {
             var user = uow.UserRepository.GetById(id);
             uow.UserRepository.Remove(user);
+
             uow.Commit();
         }
 
-        public void UpdateUser(UserModel user)
+        public void UpdateUser(UpdateUserModel user)
         {
-            var entity = MapperService.Instance.Map<UserModel, User>(user);
+            var entity = MapperService.Instance.Map<UpdateUserModel, User>(user);
             uow.UserRepository.Update(entity);
 
             uow.Commit();
+        }
+
+        private bool AreValidCredentials(Credentials creds, User model)
+        {
+            var password = CriptingService.HashPassword(creds.Password);
+            return creds.Login == model.Login && model.Password == password && !model.IsDeleted;
         }
     }
 }

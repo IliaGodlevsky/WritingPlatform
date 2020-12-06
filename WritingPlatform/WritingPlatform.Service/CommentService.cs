@@ -47,5 +47,13 @@ namespace WritingPlatform.Service
 
             uow.Commit();
         }
+
+        public void UpdateComment(UpdateCommentModel model)
+        {
+            var entity = MapperService.Instance.Map<UpdateCommentModel, Comment>(model);
+            uow.CommentRepository.Update(entity);
+
+            uow.Commit();
+        }
     }
 }

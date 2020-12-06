@@ -2,9 +2,9 @@
 
 namespace WritingPlatform.Controllers
 {
-    public class CommentController : Controller
+    public class MarkController : Controller
     {
-        // GET: Comment
+        // GET: Mark
         public ActionResult Index()
         {
             return View();

@@ -4,13 +4,15 @@ using WritingPlatform.Base.Abstractions;
 
 namespace WritingPlatform.Data.Entities
 {
-    public class Comment : BaseEntity
+    public class Mark : BaseEntity
     {
-        [Required]
-        public string Content { get; set; }
-
         [Required]
         [Column("Composition id")]
         public int CompositionId { get; set; }
+
+        [Required]
+        [Column("Mark")]
+        [Range(0.0, 100.0)]
+        public int Rating { get; set; }
     }
 }

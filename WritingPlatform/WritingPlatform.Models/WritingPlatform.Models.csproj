@@ -78,14 +78,19 @@
   <ItemGroup>
     <Compile Include="Comments\CommentModel.cs" />
     <Compile Include="Comments\NewCommentModel.cs" />
-    <Compile Include="Compositions\AuthoreCompositionModel.cs" />
+    <Compile Include="Comments\UpdateCommentModel.cs" />
+    <Compile Include="Compositions\UpdateCompositionModel.cs" />
+    <Compile Include="Identity\ChangePasswordModel.cs" />
     <Compile Include="Identity\Credentials.cs" />
+    <Compile Include="Mark\MarkModel.cs" />
+    <Compile Include="Mark\NewMarkModel.cs" />
+    <Compile Include="Mark\UpdateMarkModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\NewUserModel.cs" />
+    <Compile Include="Users\UpdateUserModel.cs" />
     <Compile Include="Users\UserModel.cs" />
     <Compile Include="Users\UserWithCompositionsModel.cs" />
     <Compile Include="Compositions\NewCompositionModel.cs" />
-    <Compile Include="Compositions\UpdateCompositionModel.cs" />
     <Compile Include="Compositions\CompositionModel.cs" />
     <Compile Include="Compositions\CompositionWithCommentsModel.cs" />
   </ItemGroup>

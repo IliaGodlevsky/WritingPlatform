@@ -14,6 +14,8 @@ namespace WritingPlatform.Data
 
         private ICompositionRepository compositionRepository;
 
+        private IMarkRepository markRepository;
+
         public DataUnitOfWork(string connectionString)
         {
             context = new DataDbContext(connectionString);
@@ -55,6 +57,19 @@ namespace WritingPlatform.Data
                 }
 
                 return compositionRepository;
+            }
+        }
+
+        public IMarkRepository MarkRepository
+        {
+            get
+            {
+                if(markRepository==null)
+                {
+                    markRepository = new MarkRepository(context);
+                }
+
+                return markRepository;
             }
         }
 

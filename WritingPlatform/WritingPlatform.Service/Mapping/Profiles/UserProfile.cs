@@ -12,7 +12,14 @@ namespace WritingPlatform.Service.Mapping.Profiles
             CreateMap<User, UserModel>();
             CreateMap<User, UserWithCompositionsModel>();
             CreateMap<UserModel, User>();
+
+            CreateMap<UserModel, UserWithCompositionsModel>();
+            CreateMap<UserWithCompositionsModel, UserModel>();
+
             CreateMap<NewUserModel, User>();
+
+            CreateMap<UpdateUserModel, User>();
+            CreateMap<User, UpdateUserModel>();
         }
     }
 }
