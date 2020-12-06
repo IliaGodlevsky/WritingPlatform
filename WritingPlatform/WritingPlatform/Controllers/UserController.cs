@@ -34,7 +34,7 @@ namespace WritingPlatform.Controllers
             return Redirect("/Account/Index");
         }
 
-        [HttpPost]
+        [HttpGet]
         [Authorize]
         public ActionResult Logout()
         {
