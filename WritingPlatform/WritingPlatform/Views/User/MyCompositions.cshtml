@@ -1,0 +1,32 @@
+﻿@using WritingPlatform.Models.Compositions;
+@using WritingPlatform.App_Code;
+
+@model WritingPlatform.Models.IndexViewModel<CompositionModel>
+
+@{
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Publication time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var composition in Model.Collection)
+        {
+            <tr>
+                <td>@composition.Name</td>
+                <td>@composition.Genre</td>
+                <td>@composition.PublicationTime</td>  
+                <td><a href="#" class="btn btn-info" role="button">Details</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="btn-group">
+    @Html.PageLinks(Model.PageInfo, x => Url.Action("MyCompositions", new { page = x }))
+</div>
