@@ -219,11 +219,11 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Shared\UserLayout.cshtml" />
     <Content Include="Views\User\MyCompositions.cshtml" />
+    <Content Include="Views\Composition\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Comment\" />
-    <Folder Include="Views\Composition\" />
     <Folder Include="Views\Mark\" />
   </ItemGroup>
   <ItemGroup>

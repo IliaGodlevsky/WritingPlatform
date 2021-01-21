@@ -79,6 +79,7 @@
     <Compile Include="Comments\CommentModel.cs" />
     <Compile Include="Comments\NewCommentModel.cs" />
     <Compile Include="Comments\UpdateCommentModel.cs" />
+    <Compile Include="Compositions\DetailedCompositionModel.cs" />
     <Compile Include="Compositions\UpdateCompositionModel.cs" />
     <Compile Include="Identity\ChangePasswordModel.cs" />
     <Compile Include="Identity\Credentials.cs" />

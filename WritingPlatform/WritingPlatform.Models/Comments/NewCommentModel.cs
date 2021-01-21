@@ -4,6 +4,6 @@
     {
         public string Content { get; set; }
 
-        public int WorkId { get; set; }
+        public int CompositionId { get; set; }
     }
 }
